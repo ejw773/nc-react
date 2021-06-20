@@ -13,7 +13,6 @@ function RenderDirectoryItem({campsite, onClick}) {
 }
 
 function Directory(props) {
-    console.log(props.campsites);
     const directory = props.campsites.map(campsite => {
         return (
             <div key={campsite.id} className="col-md-5 m-1">
