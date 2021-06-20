@@ -2,12 +2,7 @@ import React from 'react';
 import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
 
 
-class CampsiteInfo extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    renderCampsite(campsite) {
+function RenderCampsite({campsite}) {
         return (
             <div className="col-md-5 m-1">
                 <Card>
@@ -22,7 +17,7 @@ class CampsiteInfo extends React.Component {
         )
     };
 
-    renderComments(comments) {
+function RenderComments({comments}) {
         if (comments) {
             return (
                 <div className="col-md-5 m-1">
@@ -42,7 +37,7 @@ class CampsiteInfo extends React.Component {
         }
     }
 
-    render() {
+function CampsiteInfo(props) {
         if (this.props.campsite) {
             return (
                 <div className="container">
@@ -58,6 +53,6 @@ class CampsiteInfo extends React.Component {
             )
         }
     }
-}
+
 
 export default CampsiteInfo
