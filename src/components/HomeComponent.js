@@ -8,7 +8,7 @@ function Home(props) {
                 <div className="col-md m-1">
                     <RenderCard item={props.campsite} />
                 </div>
-                <div className="col-md m1">
+                <div className="col-md m-1">
                     <RenderCard item={props.promotion} />
                 </div>
                 <div className="col-md m-1">
