@@ -1,7 +1,62 @@
 import React from 'react';
-import { Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbItem, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { Control, LocalForm } from 'react-redux-form';
+import { Modal } from 'reactstrap';
 
+class CommentForm extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isModalOpen: false
+        }
+        this.toggleModal = this.toggleModal.bind(this);
+    }
+
+    toggleModal() {
+        this.setState({
+            isModalOpen: !this.state.isModalOpen
+        });
+    }
+
+    render () {
+        return (
+            <div>
+                <Modal isOpen="true" toggle={this.toggleModal}>
+                    <LocalForm>
+                        <div className="form-control">
+                            <Control.select
+                                model=".rating"
+                                options="1-5"
+                                id="rating"
+                                name="rating"
+                            />
+                        </div>
+                        <div className="form-control">
+                            <Control.text
+                                model=".author"
+                                id="author"
+                                name="author"
+                            />
+                        </div>
+                        <div className="form-control    ">
+                            <Control.textarea
+                                model=".text"
+                                rows="6"
+                                id="text"
+                                name="text"
+                            />
+                        </div>
+                        <button type="submit">Submit Comment</button>
+                    </LocalForm>
+                </Modal>
+                <Button outline>
+                    <i className="fa fa-lg fa-pencil" aria-hidden="true"> Submit Comment</i>
+                </Button>
+            </div>
+        )
+    }
+}
 
 function RenderCampsite({campsite}) {
         return (
@@ -28,6 +83,7 @@ function RenderComments({comments}) {
                         <p>{comment.author} - {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}</p>
                         <br />
                     </div>)}
+                    <CommentForm />
                 </div>
             )
         } else {
