@@ -1,7 +1,9 @@
 import React from 'react';
 import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
+import { Loading } from './LoadingComponent';
 
 function Home(props) {
+    console.log(`The props: ${props.campsite}`);
     return (
         <div className="container">
             <div className="row">
@@ -12,14 +14,24 @@ function Home(props) {
                     <RenderCard item={props.promotion} />
                 </div>
                 <div className="col-md m-1">
-                    <RenderCard item={props.partner} />
+                    <RenderCard 
+                        item={props.partner} 
+                        isLoading={props.campsiteLoading}
+                        errMess={props.campsitesErrMess}
+                    />
                 </div>
             </div>
         </div>
     )
 }
 
-function RenderCard({item}) {
+function RenderCard({item, isLoading,  errMess}) {
+    if (isLoading) {
+        return <Loading />;
+    }
+    if (errMess) {
+        return <h4>{errMess}</h4>;
+    }
     return (
         <Card>
             <CardImg src={item.image} alt={item.name} />
@@ -28,7 +40,7 @@ function RenderCard({item}) {
                 <CardText>{item.description}</CardText>
             </CardBody>
         </Card>
-    )
+    );
 }
 
 export default Home;
