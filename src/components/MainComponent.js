@@ -37,6 +37,7 @@ class Main extends Component {
   }
 
   render() {
+    console.log(this.props.campsites.isLoading);
     const HomePage = () => {
       return (
         <Home
