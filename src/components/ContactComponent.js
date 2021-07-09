@@ -177,7 +177,7 @@ class Contact extends React.Component {
                             </Row>
                             <Row className="form-group">
                                 <Col md={{size: 4, offset: 2}}>
-                                    <div classname="form-check">
+                                    <div className="form-check">
                                         <Label check>
                                             <Control.checkbox
                                                 model=".agree"
