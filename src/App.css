@@ -45,8 +45,6 @@ h2 {
   background-color: #901CAD;
 }
 
-
-
 .page-enter {
   opacity: 0;
   transform: translateX(-100%);
