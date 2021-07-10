@@ -8,16 +8,8 @@ import Footer from './FooterComponent';
 import Contact from './ContactComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { actions } from 'react-redux-form';
 import { addComment, fetchCampsites, fetchComments, fetchPromotions } from '../redux/ActionCreators';
-
-
-const mapDispatchToProps = {
-  addComment: (campsiteId, rating, author, text) => (addComment(campsiteId, rating, author, text)),
-  fetchCampsites: () => (fetchCampsites()),
-  // resetFeedbackForm: () => (actions.reset('feedbackForm')),
-  fetchComments: () => (fetchComments()),
-  fetchPromotions: () => (fetchPromotions())
-};
 
 const mapStateToProps = state => {
   return {
@@ -28,6 +20,14 @@ const mapStateToProps = state => {
   }
 }
 
+const mapDispatchToProps = {
+  addComment: (campsiteId, rating, author, text) => (addComment(campsiteId, rating, author, text)),
+  fetchCampsites: () => (fetchCampsites()),
+  resetFeedbackForm: () => (actions.reset('feedbackForm')),
+  fetchComments: () => (fetchComments()),
+  fetchPromotions: () => (fetchPromotions())
+};
+
 class Main extends Component {
 
   componentDidMount() {
@@ -37,7 +37,7 @@ class Main extends Component {
   }
 
   render() {
-    console.log(this.props.campsites.isLoading);
+
     const HomePage = () => {
       return (
         <Home

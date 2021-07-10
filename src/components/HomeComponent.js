@@ -3,6 +3,30 @@ import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
 import { Loading } from './LoadingComponent';
 import { baseUrl } from '../shared/baseUrl';
 
+function RenderCard({item, isLoading,  errMess}) {
+    if (isLoading) {
+        return <Loading />;
+    }
+    if (errMess) {
+        return (
+            <h4>{errMess}</h4>
+        )
+    } 
+    if (!isLoading && !errMess) {
+    return (
+        <Card>
+            <CardImg src={baseUrl + item.image} alt={item.name} />
+            <CardBody>
+                <CardTitle>{item.name}</CardTitle>
+                <CardText>{item.description}</CardText>
+            </CardBody>
+        </Card>
+    );
+    } else {
+        return <div />
+    }
+}
+
 function Home(props) {
     console.log(props);
     return (
@@ -24,7 +48,7 @@ function Home(props) {
                 </div>
                 <div className="col-md m-1">
                     <RenderCard 
-                        item={props.partner} 
+                        item={props.partner}
                         isLoading={props.campsiteLoading}
                         errMess={props.campsitesErrMess}
                     />
@@ -34,22 +58,5 @@ function Home(props) {
     )
 }
 
-function RenderCard({item, isLoading,  errMess}) {
-    if (isLoading) {
-        return <Loading />;
-    } else if (errMess) {
-        return <h4>{errMess}</h4>;
-    } else {
-        return (
-            <Card>
-                <CardImg src={baseUrl + item.image} alt={item.name} />
-                <CardBody>
-                    <CardTitle>{item.name}</CardTitle>
-                    <CardText>{item.description}</CardText>
-                </CardBody>
-            </Card>
-        );
-    }
-}
 
 export default Home;
